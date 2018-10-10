@@ -3,7 +3,7 @@
 #include "ListaDoble.cpp"
 #include <QString>
 #include <QStringList>
-
+#include <exception>
 
 QString Decimal_Binario(QString const num) {
     ListaDoble<int>* lista = new ListaDoble<int>();
@@ -52,27 +52,26 @@ QString Decimal_Binario(QString const num) {
     }
     return convertido;
 }
-// C++ program to convert binary to decimal
-// Function to convert binary to decimal
-QString binaryToDecimal(QString n)
+QString binarioDecimal(QString n)
 {
-    QString num = n;
-    int dec_value = 0;
+    try {
+        int num = n.toInt();
+        int dec_value = 0;
+        int base = 1;
+        int temp = num;
+        while (temp)
+        {
+            int last_digit = temp % 10;
+            temp = temp/10;
 
-    // Initializing base value to 1, i.e 2^0
-    int base = 1;
+            dec_value += last_digit*base;
 
-    int temp = num;
-    while (temp)
-    {
-        int last_digit = temp % 10;
-        temp = temp/10;
-
-        dec_value += last_digit*base;
-
-        base = base*2;
+            base = base*2;
+        }
+        QString valor = QString::number(dec_value);
+        return valor;
+    } catch (int e) {
+        cout<<"Error no inserto un numero"<< e << '\n';
     }
-
-    return dec_value;
 }
 

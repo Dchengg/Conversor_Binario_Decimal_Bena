@@ -27,7 +27,9 @@ void MainWindow::on_Operacion_clicked()
     }
     else
     {
-       QMessageBox::information(this,tr("Error"),tr("Error aun no se ha implementado esta funcionalidad"));
+       QString dato = this -> ui -> IngresaNum -> toPlainText();
+       QString result = binarioDecimal(dato);
+       ui->pantalla->setText(result);
     }
 
 
